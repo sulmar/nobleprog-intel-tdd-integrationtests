@@ -1,0 +1,6 @@
+temperature,expected
+90,Critical
+85,Critical
+70,Warning
+55,Normal
+30,Low

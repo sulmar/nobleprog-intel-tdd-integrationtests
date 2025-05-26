@@ -1,0 +1,6 @@
+[
+  { "temperature": 90, "expected": "Critical" },
+  { "temperature": 75, "expected": "Warning" },
+  { "temperature": 60, "expected": "Normal" },
+  { "temperature": 30, "expected": "Low" }
+]
