@@ -14,7 +14,7 @@ public class TemperatureMonitor
     {
         _threshold = threshold;
     }
-
+    
     public bool IsAlertTriggered(double currentTemperature)
     {
         return currentTemperature > _threshold;
