@@ -1,14 +1,25 @@
 ﻿namespace ArrangeActAssert;
 
+public class Battery
+{
+    public double Level { get; set; }
+    public double Capacity { get; set; }
+}
+
 public class WaterLevelSensor
 {
+    private Battery _battery;
     public bool IsEnabled { get; }
     public int MaxSafeWaterLevel { get; }
 
-    public WaterLevelSensor(int maxSafeWaterLevel = 100)
+    public WaterLevelSensor(Battery battery, int maxSafeWaterLevel = 100)
     {
-        IsEnabled = true;
+        _battery = battery;
+        
         MaxSafeWaterLevel = maxSafeWaterLevel;
+        
+        if (_battery is not null && _battery.Level > 0)
+           IsEnabled = true;
     }
 
     public bool IsFloodRisk(int currentWaterLevel)
