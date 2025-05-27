@@ -2,22 +2,23 @@
 
 public class SensorLog
 {
-    private readonly List<int> _readings = new();
+    private readonly List<int> _measures = new();
+    public DateTime? StartedAt { get; set; }
 
-    public void AddReading(int value)
+    public void AddMeasure(int value)
     {
-        _readings.Add(value);
-    }
-
-    public IReadOnlyList<int> GetReadings()
-    {
-        return _readings.AsReadOnly();
+        if (_measures.Count == 0)
+        {
+            StartedAt = DateTime.UtcNow;
+        }
+        
+        _measures.Add(value);
     }
 
     public bool ContainsReading(int value)
     {
-        return _readings.Contains(value);
+        return _measures.Contains(value);
     }
 
-    public int Count => _readings.Count;
+    public int Count => _measures.Count;
 }
