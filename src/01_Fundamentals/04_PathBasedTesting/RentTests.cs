@@ -2,12 +2,19 @@
 
 public class RentTests
 {
+    private Rent rent;
+
+    public RentTests()
+    {
+        rent = new Rent { Rentee = new User() };
+    }
+    
     [Fact]
     public void CanReturn_UserIsRentee_ReturnsTrue()
     {
         // Arrange
         var rentee = new User { IsAdmin = false };   
-        var rent = new Rent { Rentee = rentee };
+        rent.Rentee = rentee;
         
         // Act
         var result = rent.CanReturn(rentee);
@@ -19,12 +26,8 @@ public class RentTests
     [Fact]
     public void CanReturn_UserIsAdminAndNotRentee_ReturnsTrue()
     {
-        // Arrange
-        var admin = new User { IsAdmin = true };   
-        var rent = new Rent { Rentee = new User() };
-        
         // Act
-        var result = rent.CanReturn(admin);
+        var result = rent.CanReturn(new User { IsAdmin = true });
         
         // Assert
         Assert.True(result);
@@ -35,7 +38,7 @@ public class RentTests
     {
         // Arrange
         var admin = new User { IsAdmin = true };   
-        var rent = new Rent { Rentee = admin };
+        rent.Rentee = admin;
         
         // Act
         var result = rent.CanReturn(admin);
@@ -47,9 +50,6 @@ public class RentTests
     [Fact]
     public void CanReturn_UserIsEmpty_ThrowsArgumentNullException()
     {
-        // Arrange
-        var rent = new Rent();
-        
         // Act
         Action act = () => rent.CanReturn(null);
 
@@ -60,12 +60,8 @@ public class RentTests
     [Fact]
     public void CanReturn_UserIsNotRenteeAndIsNotAdmin_ReturnsFalse()
     {
-        // Arrange
-        var rentee = new User { IsAdmin = false };  
-        var rent = new Rent { Rentee = new User() };
-        
         // Act
-        var result = rent.CanReturn(rentee);
+        var result = rent.CanReturn(new User());
         
         // Assert
         Assert.False(result);
