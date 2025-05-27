@@ -4,24 +4,45 @@ public class TemperatureMonitorTests
 {
     // Method_Scenario_ExpectedBehavior
     
+    private const double WaterBoilingTemperature = 100; // in Celsius
+    
     [Fact]
     public void IsAlertTriggered_CurrentTemperaturIsBelowThreshlod_ReturnsFalse()
     {
-        throw new NotImplementedException();
+        // Arrange
+        var monitor = new TemperatureMonitor(WaterBoilingTemperature);
+        
+        // Act
+        var result = monitor.IsAlertTriggered(50);
+        
+        // Assert
+        Assert.False(result);
     }
 
     [Fact]
     public void IsAlertTriggered_CurrentTemperaturIsAboveThreshlod_ReturnsTrue()
     {
-        throw new NotImplementedException();
+        // Arrange
+        var monitor = new TemperatureMonitor(WaterBoilingTemperature);
+        
+        // Act
+        var result = monitor.IsAlertTriggered(120);
+        
+        // Assert
+        Assert.True(result);
+        
     }
 
     [Fact]
     public void IsAlertTrigger_CurrentTemperaturIsEqualThreshlod_ReturnsFalse()
     {
-        var monitor = new TemperatureMonitor(10d);
-
-        throw new NotImplementedException();
-
+        // Arrange
+        var monitor = new TemperatureMonitor(WaterBoilingTemperature);
+        
+        // Act
+        var result = monitor.IsAlertTriggered(100);
+        
+        // Assert
+        Assert.False(result);
     }
 }
