@@ -4,13 +4,18 @@ namespace FakeTests;
 // Zauważ, że nie mamy dostępu do bazy danych Sql
 // Zrefaktoruj ten kod, bo ten sam mechanizm cache będzie potrzebny w innych miejscach
 
+public interface IProductRepository
+{
+    Product? Get(int id);
+}
+
 public class ProductsController
 {
-    private readonly DbProductRepository _productRepository;
+    private readonly IProductRepository _productRepository;
     private readonly CacheProductRepository _cacheProductRepository;
 
     public ProductsController(
-        DbProductRepository productRepository, 
+        IProductRepository productRepository, 
         CacheProductRepository cacheProductRepository)
     {
         this._productRepository = productRepository;
