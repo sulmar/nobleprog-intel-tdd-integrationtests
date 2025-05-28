@@ -5,6 +5,9 @@ namespace FakeTests;
 /// <summary>
 /// Implementacja dostępu do bazy danych Sql
 /// </summary>
+/// <remarks>
+/// Ten kod jest oparty na standardowym IDbConnection, co pozwala go stosować zarówno z SqlConnection (SQL Server), NpgsqlConnection (PostgreSQL), jak i innymi dostawcami ADO.NET
+/// </remarks>
 public class DbProductRepository
 {
     private readonly IDbConnection _connection;
