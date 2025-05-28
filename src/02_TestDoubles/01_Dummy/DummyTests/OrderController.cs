@@ -3,12 +3,20 @@ namespace DummyTests;
 public class OrderController
 {
     private readonly DiscountOrderCalculator _calculator;
-    private readonly GmailApiClient _gmailApiClient;
+    private IMessageClient _gmailApiClient;
     
-    public OrderController(DiscountOrderCalculator calculator, GmailApiClient gmailApiClient)
+    public OrderController(
+        DiscountOrderCalculator calculator, 
+        IMessageClient gmailApiClient)
     {
         _calculator = calculator;
         _gmailApiClient = gmailApiClient;
+    }
+
+    public OrderController(DiscountOrderCalculator calculator)
+        : this(calculator, new GmailApiClient())
+    {
+        
     }
     
     public ActionResult Post(Order order)
@@ -44,10 +52,22 @@ public class Order
 }
 
 
-public class GmailApiClient
+// Abstraction
+public interface IMessageClient
+{
+    void Send(string message);   
+}
+
+// Concrete 
+public class GmailApiClient : IMessageClient
 {
     public void Send(string message)
     {
         throw new NotImplementedException();       
     }
+}
+
+public class DummyMessageClient : IMessageClient
+{
+    public void Send(string message) { }
 }
