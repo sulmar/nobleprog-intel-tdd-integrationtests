@@ -4,7 +4,7 @@ public class OneTimeDiscountCalculator : IDiscountCalculator
 {
     private readonly IDiscountCalculator _inner;
 
-   private  Dictionary<string, decimal> _discountCodes = new()
+   private readonly Dictionary<string, decimal> _discountCodes = new()
    {
         { "EXTRA", 0.5m }
    };
@@ -16,6 +16,9 @@ public class OneTimeDiscountCalculator : IDiscountCalculator
 
     public decimal CalculateDiscount(decimal price, string discountCode)
     {
+        if (price<0)
+            throw new ArgumentException(nameof(price));
+        
         if (_discountCodes.TryGetValue(discountCode, out decimal discount))
         {
             _discountCodes.Remove(discountCode);

@@ -31,7 +31,7 @@ public class OneTimeDiscountCalculatorTests
         _calculator.CalculateDiscount(price, discountCode);
 
         // Act && Assert
-        Assert.Throws<InvalidOperationException>(()=>_calculator.CalculateDiscount(price, discountCode));
+        Assert.Throws<ArgumentException>(()=>_calculator.CalculateDiscount(price, discountCode));
     }
     
     
