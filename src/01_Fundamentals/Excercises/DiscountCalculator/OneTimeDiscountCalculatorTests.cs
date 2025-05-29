@@ -4,7 +4,7 @@ namespace _17_Exercises.DiscountCalculator;
 
 public class OneTimeDiscountCalculatorTests
 {
-    private IDiscountCalculator _calculator = new OneTimeDiscountCalculator(new FixedDiscountCalculator());
+    private IDiscountCalculator _calculator = new OneTimeDiscountCalculator(new FixedDiscountCalculator(new FakeDiscountCodeRepository()));
 
     [Fact]
     public void CalculateDiscount_FirstUseOfFiftyDiscountCode_ReturnsPriceAfterDiscount()

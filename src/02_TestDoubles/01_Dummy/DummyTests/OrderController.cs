@@ -69,5 +69,5 @@ public class GmailApiClient : IMessageClient
 
 public class DummyMessageClient : IMessageClient
 {
-    public void Send(string message) { }
+    public void Send(string message) { /* nic nie rob */ }
 }

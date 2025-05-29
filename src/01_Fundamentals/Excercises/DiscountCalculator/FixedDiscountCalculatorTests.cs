@@ -4,7 +4,7 @@ namespace _17_Exercises.DiscountCalculator;
 
 public class FixedDiscountCalculatorTests
 {
-    private FixedDiscountCalculator _calculator = new();
+    private FixedDiscountCalculator _calculator = new(new FakeDiscountCodeRepository());
     
     [Theory]
     [InlineData(100, 90)]
